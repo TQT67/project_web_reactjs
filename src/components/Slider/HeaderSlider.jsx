@@ -7,14 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 
 const HeaderSlider = () => {
   let settings = {
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    speed: 3000,
+    autoplaySpeed: 2000,
+    centerMode: true,
+    cssEase: "linear",
   };
 
   return (
@@ -30,6 +31,15 @@ const HeaderSlider = () => {
             </div>
             <div className="slider-item">
               <img src={sliderImgs[2]} alt="" />
+            </div>
+            <div className="slider-item">
+              <img src={sliderImgs[3]} alt="" />
+            </div>
+            <div className="slider-item">
+              <img src={sliderImgs[4]} alt="" />
+            </div>
+            <div className="slider-item">
+              <img src={sliderImgs[5]} alt="" />
             </div>
           </Slider>
         </div>
