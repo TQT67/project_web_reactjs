@@ -32,7 +32,6 @@
       border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
       .cat-list-link {
         font-size: 14px;
-        font-family: $font-family-manrope;
         letter-spacing: 0.3px;
         transition: $transition-ease;
 
@@ -44,7 +43,7 @@
     }
 
     &::-webkit-scrollbar {
-      width: 5px;
+      width: 8px;
     }
     &::-webkit-scrollbar-track {
       box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
