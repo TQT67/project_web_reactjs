@@ -8,6 +8,13 @@
     border-bottom: 1px solid lighten($clr-orange, 10%);
   }
 
+  .header-cnt-top-l ul li {
+    transition: $transition-ease;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
   @media screen and (max-width: 992px) {
     .header-cnt-top {
       flex-direction: column;
