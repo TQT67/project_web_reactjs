@@ -39,7 +39,7 @@ const Navbar = () => {
               <i className="fa-solid fa-bag-shopping"></i>
             </span>
             <span className="navbar-brand-txt mx-2">
-              <span className="fw-7">THD</span>SHOP.
+              <span className="fw-7">Snap</span>Up.
             </span>
           </Link>
         </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
               <input
                 type="text"
                 className="form-control fs-14"
-                placeholder="Tìm kiếm sản phẩm ưu thích "
+                placeholder="Search your preferred items here"
                 onChange={(e) => handleSearchTerm(e)}
               />
               <Link
@@ -64,8 +64,8 @@ const Navbar = () => {
 
           <ul className="navbar-nav flex align-center fs-12 fw-4 font-manrope">
             {
-              // Lấy 10 hạng mục đầu tiên
-              categories.slice(0, 10).map((category, idx) => (
+              // taking only first 8 categories
+              categories.slice(0, 8).map((category, idx) => (
                 <li className="nav-item no-wrap" key={idx}>
                   <Link to={`category/${category}`} className="nav-link text-capitalize">
                     {category.replace("-", " ")}
