@@ -39,7 +39,7 @@ const Navbar = () => {
               <i className="fa-solid fa-bag-shopping"></i>
             </span>
             <span className="navbar-brand-txt mx-2">
-              <span className="fw-7">Snap</span>Up.
+              <span className="fw-7">THD</span>SHOP.
             </span>
           </Link>
         </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
               <input
                 type="text"
                 className="form-control fs-14"
-                placeholder="Search your preferred items here"
+                placeholder="Tìm kiếm các mặt hàng ưa thích của bạn ở đây"
                 onChange={(e) => handleSearchTerm(e)}
               />
               <Link

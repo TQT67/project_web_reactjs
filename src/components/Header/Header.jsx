@@ -13,16 +13,16 @@ const Header = () => {
               <ul className="flex top-links align-center">
                 <li>
                   {/* dummy links */}
-                  <Link to="/seller">Seller Center</Link>
+                  <Link to="/seller">Trung tâm người bán</Link>
                 </li>
                 <li className="vert-line"></li>
                 <li>
                   {/* dummy links */}
-                  <Link to="/download">Download</Link>
+                  <Link to="/download">Tải xuống</Link>
                 </li>
                 <li className="vert-line"></li>
                 <li className="flex align-center">
-                  <span className="fs-13">Follow us on</span>
+                  <span className="fs-13">Theo dõi chúng tôi tại</span>
                   <ul className="social-links flex align-center">
                     <li className="mx-2">
                       <a href="www.facebook.com" className="fs-15">
@@ -45,19 +45,19 @@ const Header = () => {
                     <span className="top-link-itm-ico mx-2">
                       <i className="fa-solid fa-circle-question"></i>
                     </span>
-                    <span className="top-link-itm-txt">Support</span>
+                    <span className="top-link-itm-txt">Hỗ trợ</span>
                   </Link>
                 </li>
                 <li className="vert-line"></li>
                 <li>
                   <Link to="/">
-                    <span className="top-link-itm-txt">Register</span>
+                    <span className="top-link-itm-txt">Đăng ký</span>
                   </Link>
                 </li>
                 <li className="vert-line"></li>
                 <li>
                   <Link to="/">
-                    <span className="top-link-itm-txt">Log in</span>
+                    <span className="top-link-itm-txt">Đăng nhập</span>
                   </Link>
                 </li>
               </ul>
