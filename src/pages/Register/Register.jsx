@@ -1,28 +1,92 @@
 import { Link } from "react-router-dom";
+import Input from "./input.jsx";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import "./Register.scss";
+const schema = yup.object({
+  username: yup.string().required("Username is a required field"),
+  phoneNumber: yup
+    .string()
+    .required("phoneNumber is a required field")
+    .matches(/(?=.*[0-9])/, "Password must contain a number."),
+  email: yup.string().required("Email is a required field").email("Email is not valid!."),
+  password: yup.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: yup.string().oneOf([yup.ref("password")], "Password must be match."),
+});
 
 function Register() {
-    return (
-        <div className="login-page">
-            <div className="login-wrapper">
-                <div className="login-title">
-                    <h4>Đăng ký</h4>
-                </div>
-                <div className="login-body">
-                    <input placeholder="Họ và tên"></input>
-                    <input placeholder="Số điện thoại"></input>
-                    <input placeholder="Email/Số điện thoại/Tên đăng nhập"></input>
-                    <input type="password" placeholder="Mật khẩu"></input>
-                    <input type="password" placeholder="Nhập lại mật khẩu"></input>
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-                </div>
-                <div className="login-footer">
-                    <button>ĐĂNG KÝ</button>
-                    <Link to={'/login'}><span>Bạn đã có tài khoản?</span></Link>
-                </div>
-            </div>
+  const formSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <div className="login-page">
+      <div className="login-wrapper">
+        <div className="login-title">
+          <h4>Đăng ký</h4>
         </div>
-    );
+
+        <form className="login-body" onSubmit={handleSubmit(formSubmit)}>
+          <Input
+            id="username"
+            label="Username"
+            type="text"
+            placeholder="Enter Username"
+            register={{ ...register("username") }}
+            errorMessage={errors.username?.message}
+          />
+
+          <Input
+            id="phoneNumber"
+            label="PhoneNumber"
+            type="text"
+            placeholder="Enter PhoneNumber"
+            register={{ ...register("phoneNumber") }}
+            errorMessage={errors.phoneNumber?.message}
+          />
+          <Input
+            id="Email"
+            label="Email"
+            type="email"
+            placeholder="Enter Email"
+            register={{ ...register("email") }}
+            errorMessage={errors.email?.message}
+          />
+          <Input
+            id="Password"
+            label="Password"
+            type="password"
+            placeholder="Enter Password"
+            register={{ ...register("password") }}
+            errorMessage={errors.password?.message}
+          />
+          <Input
+            id="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm PassWord"
+            register={{ ...register("confirmPassword") }}
+            errorMessage={errors.confirmPassword?.message}
+          />
+          <div className="login-footer">
+            <button>ĐĂNG KÝ</button>
+            <Link to={"/login"}>
+              <span>Bạn đã có tài khoản?</span>
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
