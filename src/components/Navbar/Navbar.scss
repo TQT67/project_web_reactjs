@@ -95,3 +95,34 @@
     }
   }
 }
+
+// SEARCH POPOVER
+.ps-relative {
+  position: relative;
+}
+
+.search-popover {
+  position: absolute;
+  background-color: #fff;
+  margin-top: 10px;
+  top: 100%;
+  left: 0;
+  z-index: 10000;
+  width: calc(100% - 16px);
+
+  .search-popover-item {
+    list-style: none;
+    padding: 10px 15px 10px 10px;
+    font-size: 14px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: white;
+    color: #000000CC;
+
+    &:hover {
+      background-color: #dcdcdc90;
+    }
+  }
+}

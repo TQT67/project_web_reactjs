@@ -13,3 +13,27 @@
     }
   }
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 30px;
+
+  .page-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    min-width: 40px;
+    padding: 4px 10px;
+    color: rgba(0, 0, 0, 0.66);
+  }
+
+  .active {
+    color: white;
+    background: #ee4d2d;
+  }
+}

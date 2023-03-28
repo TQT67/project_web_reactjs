@@ -7,14 +7,25 @@ import ProductList from "../../components/ProductList/ProductList";
 import { fetchAsyncProducts, getAllProducts, getAllProductsStatus } from "../../store/productSlice";
 import Loader from "../../components/Loader/Loader";
 import { STATUS } from "../../utils/status";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const categories = useSelector(getAllCategories);
 
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const pageNumber = location.search.split("=")[1] || 1;
+
   useEffect(() => {
-    dispatch(fetchAsyncProducts(50));
-  }, []);
+    dispatch(
+      fetchAsyncProducts({
+        limit: 25,
+        skip: (pageNumber - 1) * 25,
+      })
+    );
+  }, [location]);
 
   const products = useSelector(getAllProducts);
   const productStatus = useSelector(getAllProductsStatus);
@@ -37,6 +48,18 @@ const HomePage = () => {
   let catProductsThree = products.filter((product) => product.category === categories[2]);
   let catProductsFour = products.filter((product) => product.category === categories[3]);
 
+  const handlePrev = () => {
+    if (pageNumber > 1) {
+      navigate(`/?page=${parseInt(pageNumber) - 1}`);
+    }
+  };
+
+  const handleNext = () => {
+    if (pageNumber < 4) {
+      navigate(`/?page=${parseInt(pageNumber) + 1}`);
+    }
+  };
+
   return (
     <main>
       <div className="slider-wrapper">
@@ -47,16 +70,41 @@ const HomePage = () => {
           <div className="categories py-5">
             <div className="categories-item">
               <div className="title-md">
-                <h3>See our products</h3>
+                <h3>Xem sản phẩm của chúng tôi</h3>
               </div>
               {productStatus === STATUS.LOADING ? (
                 <Loader />
               ) : (
                 <ProductList products={tempProducts} />
               )}
+              <ul className="pagination">
+                <li onClick={handlePrev} className="page-item">
+                  &lt;
+                </li>
+                {Array(4)
+                  .fill(0)
+                  .map((e, i) => {
+                    if (i + 1 === parseInt(pageNumber)) {
+                      return (
+                        <Link key={i} to={`/?page=${i + 1}`}>
+                          <li className="page-item active">{i + 1}</li>
+                        </Link>
+                      );
+                    }
+                    return (
+                      <Link key={i} to={`/?page=${i + 1}`}>
+                        <li className="page-item">{i + 1}</li>
+                      </Link>
+                    );
+                  })}
+                <li className="page-item">...</li>
+                <li onClick={handleNext} className="page-item">
+                  &gt;
+                </li>
+              </ul>
             </div>
 
-            <div className="categories-item">
+            {/* <div className="categories-item">
               <div className="title-md">
                 <h3>{categories[0]}</h3>
               </div>
@@ -98,7 +146,7 @@ const HomePage = () => {
               ) : (
                 <ProductList products={catProductsFour} />
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

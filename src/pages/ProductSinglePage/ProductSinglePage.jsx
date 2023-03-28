@@ -35,7 +35,7 @@ const ProductSinglePage = () => {
         dispatch(setCartMessageOff());
       }, 2000);
     }
-  }, [cartMessageStatus]);
+  }, [cartMessageStatus, id]);
 
   let discountedPrice = product?.price - product?.price * (product?.discountPercentage / 100);
   if (productSingleStatus === STATUS.LOADING) {

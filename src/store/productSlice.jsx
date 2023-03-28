@@ -45,7 +45,7 @@ const productSlice = createSlice({
 
 // để lấy danh sách sản phẩm với số lượng hạn chế
 export const fetchAsyncProducts = createAsyncThunk("products/fetch", async (limit) => {
-  const response = await fetch(`${BASE_URL}products?limit=${limit}`);
+  const response = await fetch(`${BASE_URL}products?limit=${limit.limit}&skip=${limit.skip}`);
   const data = await response.json();
   return data.products;
 });

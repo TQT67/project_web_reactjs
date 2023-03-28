@@ -12,18 +12,24 @@ import {
   ProductSinglePage,
   SearchPage,
 } from "./pages/index.jsx";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
+
           <Header />
           <Sidebar />
 
           <Routes>
             {/* home page route */}
             <Route path="/" element={<HomePage />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             {/* single product route */}
             <Route path="/product/:id" element={<ProductSinglePage />} />
             {/* category wise product listing route */}
@@ -35,6 +41,7 @@ function App() {
           </Routes>
 
           <Footer />
+
         </BrowserRouter>
       </Provider>
     </div>
