@@ -19,12 +19,10 @@ const HomePage = () => {
   const pageNumber = location.search.split("=")[1] || 1;
 
   useEffect(() => {
-    dispatch(
-      fetchAsyncProducts({
-        limit: 25,
-        skip: (pageNumber - 1) * 25,
-      })
-    );
+    dispatch(fetchAsyncProducts({
+      limit: 25,
+      skip: (pageNumber-1)*25,
+    }));
   }, [location]);
 
   const products = useSelector(getAllProducts);
@@ -49,16 +47,16 @@ const HomePage = () => {
   let catProductsFour = products.filter((product) => product.category === categories[3]);
 
   const handlePrev = () => {
-    if (pageNumber > 1) {
-      navigate(`/?page=${parseInt(pageNumber) - 1}`);
+    if(pageNumber > 1) {
+      navigate(`/?page=${parseInt(pageNumber)-1}`);
     }
-  };
+  }
 
   const handleNext = () => {
-    if (pageNumber < 4) {
-      navigate(`/?page=${parseInt(pageNumber) + 1}`);
+    if(pageNumber < 4) {
+      navigate(`/?page=${parseInt(pageNumber)+1}`);
     }
-  };
+  }
 
   return (
     <main>
@@ -70,7 +68,7 @@ const HomePage = () => {
           <div className="categories py-5">
             <div className="categories-item">
               <div className="title-md">
-                <h3>Xem sản phẩm của chúng tôi</h3>
+                <h3>See our products</h3>
               </div>
               {productStatus === STATUS.LOADING ? (
                 <Loader />
@@ -78,29 +76,19 @@ const HomePage = () => {
                 <ProductList products={tempProducts} />
               )}
               <ul className="pagination">
-                <li onClick={handlePrev} className="page-item">
-                  &lt;
-                </li>
-                {Array(4)
-                  .fill(0)
-                  .map((e, i) => {
-                    if (i + 1 === parseInt(pageNumber)) {
-                      return (
-                        <Link key={i} to={`/?page=${i + 1}`}>
-                          <li className="page-item active">{i + 1}</li>
-                        </Link>
-                      );
-                    }
-                    return (
-                      <Link key={i} to={`/?page=${i + 1}`}>
-                        <li className="page-item">{i + 1}</li>
-                      </Link>
-                    );
-                  })}
+              <li onClick={handlePrev} className="page-item">&lt;</li>
+                {Array(4).fill(0).map((e, i) => {
+                  if (i+1 === parseInt(pageNumber)) {
+                    return <Link key={i} to={`/?page=${i+1}`}>
+                    <li className="page-item active">{i+1}</li>
+                  </Link>
+                  }
+                  return <Link key={i} to={`/?page=${i+1}`}>
+                  <li className="page-item">{i+1}</li>
+                </Link>
+                })}
                 <li className="page-item">...</li>
-                <li onClick={handleNext} className="page-item">
-                  &gt;
-                </li>
+                <li onClick={handleNext} className="page-item">&gt;</li>
               </ul>
             </div>
 

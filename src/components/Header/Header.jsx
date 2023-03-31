@@ -1,9 +1,30 @@
 import React from "react";
 import "./Header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import { useState } from "react";
+import { useEffect } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      navigate('/login');
+      setUser(null);
+    })
+  }
+
+  useEffect(() => {
+    console.log('render-user');
+    onAuthStateChanged(auth, user => {
+      if(user) {
+        setUser(user);
+      }
+    })
+  }, [user])
   return (
     <header className="header text-white">
       <div className="container">
@@ -49,7 +70,8 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="vert-line"></li>
-                <li>
+                {!user && <>
+                  <li>
                   <Link to="/register">
                     <span className="top-link-itm-txt">Đăng ký</span>
                   </Link>
@@ -59,7 +81,11 @@ const Header = () => {
                   <Link to="/login">
                     <span className="top-link-itm-txt">Đăng nhập</span>
                   </Link>
+                </li></>}
+                {user && <li>
+                    <span onClick={handleLogout} className="top-link-itm-txt cursor-pointer">Đăng xuất</span>
                 </li>
+                }
               </ul>
             </div>
           </div>
