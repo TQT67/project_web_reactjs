@@ -1,6 +1,17 @@
 .footer {
+  .row {
+    display: flex;
+    justify-content: space-between;
+
+    .col {
+      flex-basis: calc(33.33% - 20px);
+      padding: 20px 100px;
+    }
+  }
+
   .copyright-text {
     display: block;
+    text-align: right;
     margin-top: 0.7rem;
   }
 }

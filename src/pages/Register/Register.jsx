@@ -40,7 +40,7 @@ function Register() {
             id="username"
             label="Username"
             type="text"
-            placeholder="Enter Username"
+            placeholder="Họ và tên"
             register={{ ...register("username") }}
             errorMessage={errors.username?.message}
           />
@@ -49,7 +49,7 @@ function Register() {
             id="phoneNumber"
             label="PhoneNumber"
             type="text"
-            placeholder="Enter PhoneNumber"
+            placeholder="Số điện thoại"
             register={{ ...register("phoneNumber") }}
             errorMessage={errors.phoneNumber?.message}
           />
@@ -57,7 +57,7 @@ function Register() {
             id="Email"
             label="Email"
             type="email"
-            placeholder="Enter Email"
+            placeholder="Email"
             register={{ ...register("email") }}
             errorMessage={errors.email?.message}
           />
@@ -65,7 +65,7 @@ function Register() {
             id="Password"
             label="Password"
             type="password"
-            placeholder="Enter Password"
+            placeholder="Mật Khẩu"
             register={{ ...register("password") }}
             errorMessage={errors.password?.message}
           />
@@ -73,7 +73,7 @@ function Register() {
             id="confirmPassword"
             label="Confirm Password"
             type="password"
-            placeholder="Confirm PassWord"
+            placeholder="Nhập lại mật khẩu "
             register={{ ...register("confirmPassword") }}
             errorMessage={errors.confirmPassword?.message}
           />

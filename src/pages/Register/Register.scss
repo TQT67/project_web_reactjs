@@ -1,3 +1,4 @@
+@import "../../App.scss";
 .login-page {
   display: flex;
   align-items: center;
@@ -29,14 +30,14 @@
       margin-bottom: 20px;
     }
     .error-message {
-      color: #ee4d2d;
+      color: $clr-red;
     }
   }
 
   .login-footer {
     button {
-      background-color: #ee4d2d;
-      color: white;
+      background-color: $clr-red;
+      color: $clr-white;
       font-size: 14px;
       width: 100%;
       padding: 12px 12px;
@@ -49,7 +50,7 @@
     span {
       display: block;
       margin-top: 10px;
-      color: #0055aa;
+      color: $clr-blue;
       font-size: 14px;
     }
   }
