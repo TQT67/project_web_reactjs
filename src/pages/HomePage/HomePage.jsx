@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import "./HomePage.scss";
 import HeaderSlider from "../../components/Slider/HeaderSlider";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCategories } from "../../store/categorySlice";
+// import { getAllCategories } from "../../store/categorySlice";
 import ProductList from "../../components/ProductList/ProductList";
 import { fetchAsyncProducts, getAllProducts, getAllProductsStatus } from "../../store/productSlice";
 import Loader from "../../components/Loader/Loader";
 import { STATUS } from "../../utils/status";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const categories = useSelector(getAllCategories);
+  // const categories = useSelector(getAllCategories);
 
   const navigate = useNavigate();
 
@@ -19,16 +19,19 @@ const HomePage = () => {
   const pageNumber = location.search.split("=")[1] || 1;
 
   useEffect(() => {
-    dispatch(fetchAsyncProducts({
-      limit: 25,
-      skip: (pageNumber-1)*25,
-    }));
+    dispatch(
+      fetchAsyncProducts({
+        limit: 25,
+        skip: (pageNumber - 1) * 25,
+      })
+    );
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
   const products = useSelector(getAllProducts);
   const productStatus = useSelector(getAllProductsStatus);
 
-  // randomizing the products in the list
+  // Ngẫu nhiên hóa các sản phẩm trong danh sách
   const tempProducts = [];
   if (products.length > 0) {
     for (let i in products) {
@@ -41,22 +44,17 @@ const HomePage = () => {
     }
   }
 
-  let catProductsOne = products.filter((product) => product.category === categories[0]);
-  let catProductsTwo = products.filter((product) => product.category === categories[1]);
-  let catProductsThree = products.filter((product) => product.category === categories[2]);
-  let catProductsFour = products.filter((product) => product.category === categories[3]);
-
   const handlePrev = () => {
-    if(pageNumber > 1) {
-      navigate(`/?page=${parseInt(pageNumber)-1}`);
+    if (pageNumber > 1) {
+      navigate(`/?page=${parseInt(pageNumber) - 1}`);
     }
-  }
+  };
 
   const handleNext = () => {
-    if(pageNumber < 4) {
-      navigate(`/?page=${parseInt(pageNumber)+1}`);
+    if (pageNumber < 4) {
+      navigate(`/?page=${parseInt(pageNumber) + 1}`);
     }
-  }
+  };
 
   return (
     <main>
@@ -76,19 +74,29 @@ const HomePage = () => {
                 <ProductList products={tempProducts} />
               )}
               <ul className="pagination">
-              <li onClick={handlePrev} className="page-item">&lt;</li>
-                {Array(4).fill(0).map((e, i) => {
-                  if (i+1 === parseInt(pageNumber)) {
-                    return <Link key={i} to={`/?page=${i+1}`}>
-                    <li className="page-item active">{i+1}</li>
-                  </Link>
-                  }
-                  return <Link key={i} to={`/?page=${i+1}`}>
-                  <li className="page-item">{i+1}</li>
-                </Link>
-                })}
+                <li onClick={handlePrev} className="page-item">
+                  &lt;
+                </li>
+                {Array(4)
+                  .fill(0)
+                  .map((e, i) => {
+                    if (i + 1 === parseInt(pageNumber)) {
+                      return (
+                        <Link key={i} to={`/?page=${i + 1}`}>
+                          <li className="page-item active">{i + 1}</li>
+                        </Link>
+                      );
+                    }
+                    return (
+                      <Link key={i} to={`/?page=${i + 1}`}>
+                        <li className="page-item">{i + 1}</li>
+                      </Link>
+                    );
+                  })}
                 <li className="page-item">...</li>
-                <li onClick={handleNext} className="page-item">&gt;</li>
+                <li onClick={handleNext} className="page-item">
+                  &gt;
+                </li>
               </ul>
             </div>
 
