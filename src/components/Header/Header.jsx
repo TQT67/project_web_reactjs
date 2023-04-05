@@ -33,11 +33,11 @@ const Header = () => {
             <div className="header-cnt-top-l">
               <ul className="flex top-links align-center">
                 <li>
-                  <Link to="/">Trung tâm người bán</Link>
+                  <Link to="/seller">Trung tâm người bán</Link>
                 </li>
-                <li className="/"></li>
+                <li className="vert-line"></li>
                 <li>
-                  <Link to="/">Tải xuống</Link>
+                  <Link to="/download">Tải xuống</Link>
                 </li>
                 <li className="vert-line"></li>
                 <li className="flex align-center">

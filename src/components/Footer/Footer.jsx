@@ -35,7 +35,7 @@ const Footer = () => {
                 <span className="text-sub">CHÍNH SÁCH</span>
                 <li>Chính sách bảo mật</li>
                 <li>Hạn của dịch vụ</li>
-                <li>Đền bù</li>
+                <li>Chính sách phát triển</li>
               </ul>
             </Link>
           </div>
