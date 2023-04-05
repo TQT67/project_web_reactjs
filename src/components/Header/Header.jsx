@@ -12,19 +12,19 @@ const Header = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     signOut(auth).then(() => {
-      navigate('/login');
+      navigate("/login");
       setUser(null);
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    console.log('render-user');
-    onAuthStateChanged(auth, user => {
-      if(user) {
+    console.log("render-user");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
         setUser(user);
       }
-    })
-  }, [user])
+    });
+  }, [user]);
   return (
     <header className="header text-white">
       <div className="container">
@@ -33,13 +33,11 @@ const Header = () => {
             <div className="header-cnt-top-l">
               <ul className="flex top-links align-center">
                 <li>
-                  {/* dummy links */}
-                  <Link to="/seller">Trung tâm người bán</Link>
+                  <Link to="/">Trung tâm người bán</Link>
                 </li>
-                <li className="vert-line"></li>
+                <li className="/"></li>
                 <li>
-                  {/* dummy links */}
-                  <Link to="/download">Tải xuống</Link>
+                  <Link to="/">Tải xuống</Link>
                 </li>
                 <li className="vert-line"></li>
                 <li className="flex align-center">
@@ -70,22 +68,28 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="vert-line"></li>
-                {!user && <>
+                {!user && (
+                  <>
+                    <li>
+                      <Link to="/register">
+                        <span className="top-link-itm-txt">Đăng ký</span>
+                      </Link>
+                    </li>
+                    <li className="vert-line"></li>
+                    <li>
+                      <Link to="/login">
+                        <span className="top-link-itm-txt">Đăng nhập</span>
+                      </Link>
+                    </li>
+                  </>
+                )}
+                {user && (
                   <li>
-                  <Link to="/register">
-                    <span className="top-link-itm-txt">Đăng ký</span>
-                  </Link>
-                </li>
-                <li className="vert-line"></li>
-                <li>
-                  <Link to="/login">
-                    <span className="top-link-itm-txt">Đăng nhập</span>
-                  </Link>
-                </li></>}
-                {user && <li>
-                    <span onClick={handleLogout} className="top-link-itm-txt cursor-pointer">Đăng xuất</span>
-                </li>
-                }
+                    <span onClick={handleLogout} className="top-link-itm-txt cursor-pointer">
+                      Đăng xuất
+                    </span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
