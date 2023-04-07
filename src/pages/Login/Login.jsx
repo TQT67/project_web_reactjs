@@ -1,13 +1,32 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
-
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { useEffect } from "react";
+import Input from "./input";
 
+const schema = yup.object({
+  username: yup.string().required("Username is a required field"),
+  password: yup.string().min(6, "Password must be at least 6 characters"),
+});
 const provider = new GoogleAuthProvider();
 
 function Login() {
+  const {
+    handleSubmit,
+    login,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const formSubmit = (data) => {
+    console.log(data);
+  };
+
   const navigate = useNavigate();
   const handleLogin = () => {
     signInWithPopup(auth, provider)
@@ -46,20 +65,33 @@ function Login() {
         <div className="login-title">
           <h4>Đăng nhập</h4>
         </div>
-        <div className="login-body">
-          <input placeholder="Email/Số điện thoại/Tên đăng nhập"></input>
-          <input type="password" placeholder="Mật khẩu"></input>
-        </div>
-        <div className="login-footer">
-          <button onClick={handleLogin}>ĐĂNG NHẬP</button>
-          <button className="login-gg" onClick={handleLogin}>
-            ĐĂNG NHẬP VỚI GOOGLE
-          </button>
+        <form className="login-body" onSubmit={handleSubmit(formSubmit)}>
+          <Input
+            id="username"
+            label="Username"
+            type="text"
+            placeholder="Enter Username"
+            errorMessage={errors.username?.message}
+          />
 
-          <Link to={"/register"}>
-            <span>Bạn chưa có tài khoản?</span>
-          </Link>
-        </div>
+          <Input
+            id="Password"
+            label="Password"
+            type="password"
+            placeholder="Enter Password"
+            errorMessage={errors.password?.message}
+          />
+          <div className="login-footer">
+            <button>ĐĂNG NHẬP</button>
+            <button className="login-gg" onClick={handleLogin}>
+              ĐĂNG NHẬP VỚI GOOGLE
+            </button>
+
+            <Link to={"/register"}>
+              <span>Bạn chưa có tài khoản?</span>
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );

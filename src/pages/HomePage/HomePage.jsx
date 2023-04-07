@@ -11,7 +11,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  // const categories = useSelector(getAllCategories);
 
   const navigate = useNavigate();
 

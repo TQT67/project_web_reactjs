@@ -92,16 +92,13 @@ const Navbar = () => {
           </div>
 
           <ul className="navbar-nav flex align-center fs-12 fw-4 font-manrope">
-            {
-              // taking only first 12 categories
-              categories.slice(0, 12).map((category, idx) => (
-                <li className="nav-item no-wrap" key={idx}>
-                  <Link to={`category/${category}`} className="nav-link text-capitalize">
-                    {category.replace("-", " ")}
-                  </Link>
-                </li>
-              ))
-            }
+            {categories.slice(0, 12).map((category, idx) => (
+              <li className="nav-item no-wrap" key={idx}>
+                <Link to={`category/${category}`} className="nav-link text-capitalize">
+                  {category.replace("-", " ")}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

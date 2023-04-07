@@ -70,7 +70,7 @@ function Register() {
             errorMessage={errors.password?.message}
           />
           <Input
-            id="confirmPassword"
+            id="ConfirmPassword"
             label="Confirm Password"
             type="password"
             placeholder="Confirm PassWord"

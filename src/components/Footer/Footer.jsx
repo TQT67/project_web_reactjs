@@ -11,9 +11,9 @@ const Footer = () => {
             <Link to="/" className="text-uppercase">
               <ul>
                 <span className="text-sub">SHOP</span>
-                <li>PRODUCT CATEGORY 1</li>
-                <li>PRODUCT CATEGORY 1</li>
-                <li>PRODUCT CATEGORY 1</li>
+                <li>Smartphones</li>
+                <li>Home Decoration</li>
+                <li>Womens Dresser</li>
               </ul>
             </Link>
           </div>
@@ -21,9 +21,9 @@ const Footer = () => {
           <div className="row">
             <Link to="/" className="text-uppercase">
               <ul>
-                <span className="text-sub">CONTACT US</span>
+                <span className="text-sub">LIÊN HỆ CHÚNG TÔI</span>
                 <li>Email: THD@gmail.com</li>
-                <li>SĐT: 0399085128</li>
+                <li>SĐT: +84 399085128</li>
                 <li>Địa chỉ : Yên Nghĩa, Quang Trung , Hà Đông</li>
               </ul>
             </Link>

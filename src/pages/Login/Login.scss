@@ -21,6 +21,13 @@
     margin-bottom: 20px;
   }
 
+  .login-body {
+    .error-message {
+      color: red;
+      font-size: 1.5rem;
+    }
+  }
+
   input {
     width: 100%;
     padding: 6px 12px;
